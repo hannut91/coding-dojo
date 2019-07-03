@@ -12,33 +12,31 @@ const maxHeightsRowCol = buildings => ({
 const increase = buildings => {
   const maxHeights = maxHeightsRowCol(buildings);
 
-  return buildings.map(
-    (heights, col) => heights.map(
-      (_, row) => Math.min(maxHeights.row[row], maxHeights.col[col]),
+  let sum = 0;
+
+  buildings.forEach(
+    (heights, col) => heights.forEach(
+      (height, row) => {
+        sum += (Math.min(maxHeights.row[row], maxHeights.col[col]) - height);
+      },
     ),
   );
+
+  return sum;
 };
 
 test('increase building height', () => {
   expect(increase([
     [1, 2],
     [3, 4],
-  ])).toEqual([
-    [2, 2],
-    [3, 4],
-  ]);
+  ])).toBe(1);
 
   expect(increase([
     [3, 0, 8, 4],
     [2, 4, 5, 7],
     [9, 2, 6, 3],
     [0, 3, 1, 0],
-  ])).toEqual([
-    [8, 4, 8, 7],
-    [7, 4, 7, 7],
-    [9, 4, 8, 7],
-    [3, 3, 3, 3],
-  ]);
+  ])).toEqual(35);
 });
 
 test('maxHeightsRowCol', () => {
