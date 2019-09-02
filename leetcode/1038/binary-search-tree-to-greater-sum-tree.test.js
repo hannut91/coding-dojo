@@ -2,8 +2,10 @@ function TreeNode(val) {
   this.val = val;
   this.left = null;
   this.right = null;
+}
 
-  this.insert = value => {
+function Tree() {
+  this.insert = function (value) {
     if (!this.val) {
       this.val = value;
       return;
@@ -29,10 +31,7 @@ function TreeNode(val) {
     }
   };
 
-  this.reverseInOrder = callback => {
-  };
-
-  this.toArray = () => {
+  this.toArray = function () {
     const queue = [];
     const output = [];
 
@@ -54,6 +53,8 @@ function TreeNode(val) {
     return output;
   };
 }
+
+Tree.call(TreeNode.prototype);
 
 const createBinaryTree = values => {
   const root = new TreeNode(values.shift());
@@ -98,24 +99,78 @@ const bstToGst = root => {
 
 test('create binary tree', () => {
   const root = createBinaryTree([
-    4, 1, 6, 0, 2, 5, 7, null, null, null, 3, null, null, null, 8,
+    4,
+    1,
+    6,
+    0,
+    2,
+    5,
+    7,
+    null,
+    null,
+    null,
+    3,
+    null,
+    null,
+    null,
+    8,
   ]);
 
   expect(root.toArray()).toEqual([
-    4, 1, 6, 0, 2, 5, 7, null, null, null, 3, null, null, null, 8,
+    4,
+    1,
+    6,
+    0,
+    2,
+    5,
+    7,
+    null,
+    null,
+    null,
+    3,
+    null,
+    null,
+    null,
+    8,
   ]);
 });
 
 test('bstToGst', () => {
   const root = bstToGst(
     createBinaryTree([
-      4, 1, 6, 0, 2, 5, 7, null, null, null, 3, null, null, null, 8,
+      4,
+      1,
+      6,
+      0,
+      2,
+      5,
+      7,
+      null,
+      null,
+      null,
+      3,
+      null,
+      null,
+      null,
+      8,
     ]),
   );
 
-  console.log(root.toArray());
-
   expect(root.toArray()).toEqual([
-    30, 36, 21, 36, 35, 26, 15, null, null, null, 33, null, null, null, 8,
+    30,
+    36,
+    21,
+    36,
+    35,
+    26,
+    15,
+    null,
+    null,
+    null,
+    33,
+    null,
+    null,
+    null,
+    8,
   ]);
 });
