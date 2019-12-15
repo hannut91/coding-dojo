@@ -14,11 +14,6 @@ const minSecondsPassBridge = (bridgeLength, weight, trucks) => {
 };
 
 const pass = (bridge, trucks, bridgeLength, weight) => {
-  if (bridge.length === 0) {
-    const nextBridge = [{ weight: trucks[0], position: 1 }, ...bridge];
-    return [nextBridge, trucks.slice(1)];
-  }
-
   let nextBridge = bridge.map(i => ({
     ...i,
     position: i.position + 1,
@@ -68,21 +63,15 @@ test('pass', () => {
   expect(trucks).toEqual([6]);
 
   [bridge, trucks] = pass(bridge, trucks, bridgeLength, weight);
-  expect(bridge).toEqual(
-    [{ weight: 5, position: 2 }]
-  );
+  expect(bridge).toEqual([{ weight: 5, position: 2 }]);
   expect(trucks).toEqual([6]);
 
   [bridge, trucks] = pass(bridge, trucks, bridgeLength, weight);
-  expect(bridge).toEqual(
-    [{ weight: 6, position: 1 }]
-  );
+  expect(bridge).toEqual([{ weight: 6, position: 1 }]);
   expect(trucks).toEqual([]);
 
   [bridge, trucks] = pass(bridge, trucks, bridgeLength, weight);
-  expect(bridge).toEqual(
-    [{ weight: 6, position: 2 }]
-  );
+  expect(bridge).toEqual([{ weight: 6, position: 2 }]);
   expect(trucks).toEqual([]);
 
   [bridge, trucks] = pass(bridge, trucks, bridgeLength, weight);
