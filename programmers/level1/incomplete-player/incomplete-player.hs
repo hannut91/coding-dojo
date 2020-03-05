@@ -12,7 +12,7 @@ notFishedPlayer participants completions =
             m2 = createMap completions
 
 createMap :: [String] -> (Map.Map String Integer)
-createMap a = foldl (\m v -> Map.insertWith (+) v 1 m) Map.empty a
+createMap = foldl (\acc cur -> Map.insertWith (+) cur 1 acc) Map.empty
 
 main = hspec $ do
   describe "notFishedPlayers" $ do
@@ -21,11 +21,11 @@ main = hspec $ do
         `shouldBe` "leo"
       notFishedPlayer 
         ["marina", "josipa", "nikola", "vinko", "filipa"]
-        ["josipa", "filipa", "marina", "nikola"] 
+        ["josipa", "filipa", "marina", "nikola"]
         `shouldBe` "vinko"
       notFishedPlayer 
-        ["mislav", "stanko", "mislav", "ana"] 
-        ["stanko", "ana", "mislav"] 
+        ["mislav", "stanko", "mislav", "ana"]
+        ["stanko", "ana", "mislav"]
         `shouldBe` "mislav"
 
   describe "createMap" $ do
