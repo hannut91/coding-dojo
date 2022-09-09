@@ -76,14 +76,14 @@ class Healp {
     }
 
     if (!this.data[rightIndex]) {
-      return currentValue > this.data[leftIndex] ? null : this.data[leftIndex];
+      return currentValue > this.data[leftIndex] ? null : leftIndex;
     }
 
     if (this.data[leftIndex] > this.data[rightIndex]) {
-      return currentValue > this.data[leftIndex] ? null : this.data[leftIndex];
+      return currentValue > this.data[leftIndex] ? null : leftIndex;
     }
 
-    return currentValue > this.data[rightIndex] ? null : this.data[rightIndex];
+    return currentValue > this.data[rightIndex] ? null : rightIndex;
   }
 }
 
