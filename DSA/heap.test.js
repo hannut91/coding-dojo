@@ -1,4 +1,4 @@
-class Healp {
+class Heap {
   constructor() {
     this.data = [];
   }
@@ -9,6 +9,10 @@ class Healp {
 
   last() {
     return this.data[this.data.length - 1];
+  }
+
+  isEmpty() {
+    return this.data.length === 0;
   }
 
   leftChildIndex(index) {
